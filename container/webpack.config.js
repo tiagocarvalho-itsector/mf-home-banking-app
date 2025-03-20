@@ -52,7 +52,7 @@ module.exports = {
         },
       },
       exposes: {
-        "./LoggedInContext": "./src/context/LoggedInContext",
+        "./LoggedInCon    text": "./src/context/LoggedInContext",
         "./FallbackRemote": "./src/components/FallbackRemote",
       },
     }),

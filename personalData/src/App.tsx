@@ -2,15 +2,21 @@ import React from "react";
 import { LoggedInProvider, useLoggedIn } from "container/LoggedInContext";
 
 const App: React.FC = () => {
-  const { loggedInEmail } = useLoggedIn();
-
   return (
     <LoggedInProvider>
-      <h1>
-        Hello, i am the personal data app and i see the parent context logged in
-        email which is {loggedInEmail}
-      </h1>
+      <PersonalDataApp />
     </LoggedInProvider>
+  );
+};
+
+const PersonalDataApp: React.FC = () => {
+  const { loggedInUser } = useLoggedIn();
+
+  return (
+    <>
+      Hello, I am the personal data app and I see the parent context logged in
+      username which is {loggedInUser ? loggedInUser : "No email found."}
+    </>
   );
 };
 

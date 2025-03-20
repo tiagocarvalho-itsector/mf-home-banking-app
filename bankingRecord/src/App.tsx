@@ -9,20 +9,30 @@ const PersonalDataApp = React.lazy(() =>
 );
 
 const App: React.FC = () => {
-  const { loggedInEmail } = useLoggedIn();
-
   return (
     <LoggedInProvider>
-      <h1>
-        Hello, i am the banking record app and i see the parent context logged
-        in email which is {loggedInEmail}
-      </h1>
-      {loggedInEmail && (
-        <Suspense fallback={<div>Loading Personal Data App...</div>}>
-          <PersonalDataApp />
-        </Suspense>
-      )}
+      <BankingRecordApp />
     </LoggedInProvider>
+  );
+};
+
+const BankingRecordApp: React.FC = () => {
+  const { loggedInUser } = useLoggedIn();
+
+  return (
+    <>
+      {loggedInUser && (
+        <>
+          <h1>
+            Hello, i am the banking record app and i see the parent context
+            logged in username which is {loggedInUser}
+          </h1>
+          <Suspense fallback={<div>Loading Personal Data App...</div>}>
+            <PersonalDataApp />
+          </Suspense>
+        </>
+      )}
+    </>
   );
 };
 

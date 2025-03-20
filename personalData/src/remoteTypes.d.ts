@@ -1,7 +1,7 @@
 declare module "container/LoggedInContext" {
   interface LoggedInContextType {
-    loggedInEmail: string | null;
-    setLoggedInEmail: (email: string | null) => void;
+    loggedInUser: string;
+    setLoggedInUser: (username: string) => void;
   }
 
   export function useLoggedIn(): LoggedInContextType;
