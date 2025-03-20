@@ -1,25 +1,21 @@
 import React, {
   createContext,
   ReactNode,
-  useCallback,
   useContext,
-  useEffect,
   useState,
+  useEffect,
 } from "react";
 
 type LoggedInContextType = {
-  loggedInEmail: string | null;
-  setLoggedInEmail: (email: string | null) => void;
+  loggedInUser: string;
+  setLoggedInUser: (emailOrUsername: string) => void;
 };
 
-const LoggedInContext = createContext<LoggedInContextType | null>({
-  loggedInEmail: "email@exemplo.com",
-  setLoggedInEmail: () => {},
-});
+const LoggedInContext = createContext<LoggedInContextType | null>(null);
 
 export const useLoggedIn = () => {
   const context = useContext(LoggedInContext);
-  if (context === null) {
+  if (!context) {
     throw new Error("useLoggedIn must be used within a LoggedInProvider");
   }
   return context;
@@ -32,31 +28,20 @@ interface LoggedInProviderProps {
 export const LoggedInProvider: React.FC<LoggedInProviderProps> = ({
   children,
 }) => {
-  const storedEmail = localStorage.getItem("loggedInUser");
-
-  const [loggedInEmail, setLoggedInEmail] = useState<string | null>(
-    storedEmail
+  const [loggedInUser, setLoggedInUser] = useState<string>(
+    localStorage.getItem("loggedInUser") || ""
   );
 
   useEffect(() => {
-    if (loggedInEmail) {
-      localStorage.setItem("loggedInUser", loggedInEmail);
+    if (loggedInUser) {
+      localStorage.setItem("loggedInUser", loggedInUser);
     } else {
       localStorage.removeItem("loggedInUser");
     }
-  }, [loggedInEmail]);
-
-  const handleLoginLogout = useCallback((email: string | null) => {
-    setLoggedInEmail(email);
-  }, []);
+  }, [loggedInUser]);
 
   return (
-    <LoggedInContext.Provider
-      value={{
-        loggedInEmail,
-        setLoggedInEmail: handleLoginLogout,
-      }}
-    >
+    <LoggedInContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       {children}
     </LoggedInContext.Provider>
   );

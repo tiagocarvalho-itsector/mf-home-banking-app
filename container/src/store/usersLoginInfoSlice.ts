@@ -13,13 +13,13 @@ interface UsersLoginInfoState {
 const initialState: UsersLoginInfoState = {
   usersLoginInfo: [
     {
-      username: "joao-silva",
-      email: "joao.siva@gmail.com",
+      username: "tiagocarvalho",
+      email: "tiago.carvalho@itsector.pt",
       password: "password",
     },
     {
-      username: "maria-santos",
-      email: "maria.santos@gmail.com",
+      username: "miguelsantos",
+      email: "miguel.santos@itsector.pt",
       password: "password",
     },
   ],

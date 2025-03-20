@@ -4,6 +4,7 @@ import FallbackRemote from "./components/FallbackRemote";
 import { LoggedInProvider, useLoggedIn } from "./context/LoggedInContext";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import { LoginForm } from "./components/LoginForm";
 
 const BankingRecordApp = React.lazy(() =>
   import("bankingRecord/App").catch(() => {
@@ -22,13 +23,13 @@ const App: React.FC = () => {
 };
 
 const LoginApp: React.FC = () => {
-  const { loggedInEmail } = useLoggedIn();
+  const { loggedInUser } = useLoggedIn();
 
   return (
     <>
-      <h1>Hello, I am the container app!</h1>
-      {loggedInEmail && (
-        <Suspense fallback={<div>Loading Banking Record App...</div>}>
+      {!loggedInUser && <LoginForm />}
+      {loggedInUser && (
+        <Suspense fallback={<div>Loading Banking Record...</div>}>
           <BankingRecordApp />
         </Suspense>
       )}
