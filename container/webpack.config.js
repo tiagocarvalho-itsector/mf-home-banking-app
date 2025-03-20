@@ -36,10 +36,10 @@ module.exports = {
     }),
     new ModuleFederationPlugin({
       name: "container",
+      filename: "remoteEntry.js",
       remotes: {
         container: "container@http://localhost:3000/remoteEntry.js",
-        firstChild: "firstChild@http://localhost:3001/remoteEntry.js",
-        secondChild: "secondChild@http://localhost:3002/remoteEntry.js",
+        bankingRecord: "bankingRecord@http://localhost:3001/remoteEntry.js",
       },
       shared: {
         react: {
@@ -53,6 +53,7 @@ module.exports = {
       },
       exposes: {
         "./LoggedInContext": "./src/context/LoggedInContext",
+        "./FallbackRemote": "./src/components/FallbackRemote",
       },
     }),
   ],

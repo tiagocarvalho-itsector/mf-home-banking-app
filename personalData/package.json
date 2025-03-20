@@ -1,7 +1,7 @@
 {
-  "name": "secondchild",
+  "name": "personal-data",
   "version": "1.0.0",
-  "description": "second child app running inside the container app",
+  "description": "personal data app running inside the banking record app",
   "main": "index.ts",
   "scripts": {
     "start": "webpack serve --mode development",

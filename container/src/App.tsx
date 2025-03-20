@@ -5,17 +5,12 @@ import { LoggedInProvider, useLoggedIn } from "./context/LoggedInContext";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 
-const FirstChildApp = React.lazy(() =>
-  import("firstChild/App").catch(() => {
-    return { default: () => <FallbackRemote name="firstChild/App" /> };
+const BankingRecordApp = React.lazy(() =>
+  import("bankingRecord/App").catch(() => {
+    return { default: () => <FallbackRemote name="bankingRecord/App" /> };
   })
 );
 
-const SecondChildApp = React.lazy(() =>
-  import("secondChild/App").catch(() => {
-    return { default: () => <FallbackRemote name="secondChild/App" /> };
-  })
-);
 const App: React.FC = () => {
   return (
     <Provider store={store}>
@@ -33,13 +28,8 @@ const LoginApp: React.FC = () => {
     <>
       <h1>Hello, I am the container app!</h1>
       {loggedInEmail && (
-        <Suspense fallback={<div>Loading First Child App...</div>}>
-          <FirstChildApp />
-        </Suspense>
-      )}
-      {loggedInEmail && (
-        <Suspense fallback={<div>Loading Second Child App...</div>}>
-          <SecondChildApp />
+        <Suspense fallback={<div>Loading Banking Record App...</div>}>
+          <BankingRecordApp />
         </Suspense>
       )}
     </>

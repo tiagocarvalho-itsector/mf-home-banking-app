@@ -12,3 +12,17 @@ declare module "container/LoggedInContext" {
 
   export const LoggedInProvider: React.FC<LoggedInProviderProps>;
 }
+
+declare module "container/FallbackRemote" {
+  interface ThisProps {
+    name: string;
+  }
+
+  const FallbackRemote: React.FC<ThisProps>;
+  export default FallbackRemote;
+}
+
+declare module "personalData/App" {
+  const PersonalDataApp: React.ComponentType;
+  export default PersonalDataApp;
+}

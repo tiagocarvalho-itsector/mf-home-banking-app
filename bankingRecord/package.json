@@ -1,7 +1,7 @@
 {
-  "name": "firstchild",
+  "name": "banking-record",
   "version": "1.0.0",
-  "description": "first child app running inside the container app",
+  "description": "banking record app running inside the container app",
   "main": "index.ts",
   "scripts": {
     "start": "webpack serve --mode development",
