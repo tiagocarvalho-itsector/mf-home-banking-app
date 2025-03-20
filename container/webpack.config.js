@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const ModulefederationTypesPlugin =
+  require("@cloudbeds/webpack-module-federation-types-plugin").ModuleFederationTypesPlugin;
 const packageJson = require("./package.json");
 
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -38,9 +40,11 @@ module.exports = {
       name: "container",
       filename: "remoteEntry.js",
       remotes: {
-        container: "container@http://localhost:3000/remoteEntry.js",
         bankingRecord: "bankingRecord@http://localhost:3001/remoteEntry.js",
+        login: "login@http://localhost:3002/remoteEntry.js",
+        personalData: "personalData@http://localhost:3003/remoteEntry.js",
       },
+      exposes: {},
       shared: {
         react: {
           singleton: true,
@@ -51,10 +55,10 @@ module.exports = {
           requiredVersion: packageJson.dependencies["react-dom"],
         },
       },
-      exposes: {
-        "./LoggedInCon    text": "./src/context/LoggedInContext",
-        "./FallbackRemote": "./src/components/FallbackRemote",
-      },
+    }),
+    new ModulefederationTypesPlugin({
+      dirDownloadedTypes: "src/types",
+      dirEmittedTypes: "@types",
     }),
   ],
   devServer: {

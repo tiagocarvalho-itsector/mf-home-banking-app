@@ -37,13 +37,11 @@ module.exports = {
       template: "./public/index.html",
     }),
     new ModuleFederationPlugin({
-      name: "bankingRecord",
+      name: "login",
       filename: "remoteEntry.js",
       exposes: {
         "./App": "./src/App",
-      },
-      remotes: {
-        login: "login@http://localhost:3002/remoteEntry.js",
+        "./useAuthStore": "./src/stores/useAuthStore",
       },
       shared: {
         react: {
@@ -63,7 +61,7 @@ module.exports = {
   ],
   devServer: {
     static: path.join(__dirname, "dist"),
-    port: 3001,
+    port: 3002,
     hot: true,
     historyApiFallback: true,
   },

@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const ModulefederationTypesPlugin =
+  require("@cloudbeds/webpack-module-federation-types-plugin").ModuleFederationTypesPlugin;
 const packageJson = require("./package.json");
 
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -41,7 +43,7 @@ module.exports = {
         "./App": "./src/App",
       },
       remotes: {
-        container: "container@http://localhost:3000/remoteEntry.js",
+        login: "login@http://localhost:3002/remoteEntry.js",
       },
       shared: {
         react: {
@@ -54,10 +56,14 @@ module.exports = {
         },
       },
     }),
+    new ModulefederationTypesPlugin({
+      dirDownloadedTypes: "src/types",
+      dirEmittedTypes: "@types",
+    }),
   ],
   devServer: {
     static: path.join(__dirname, "dist"),
-    port: 3002,
+    port: 3003,
     hot: true,
     historyApiFallback: true,
   },

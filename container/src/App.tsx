@@ -1,10 +1,7 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import "./global.css";
 import FallbackRemote from "./components/FallbackRemote";
-import { LoggedInProvider, useLoggedIn } from "./context/LoggedInContext";
-import { store } from "./store/store";
-import { Provider } from "react-redux";
-import { LoginForm } from "./components/LoginForm";
+import { useAuthStore } from "login/useAuthStore";
 
 const BankingRecordApp = React.lazy(() =>
   import("bankingRecord/App").catch(() => {
@@ -12,28 +9,46 @@ const BankingRecordApp = React.lazy(() =>
   })
 );
 
+const LoginApp = React.lazy(() =>
+  import("login/App").catch(() => {
+    return { default: () => <FallbackRemote name="login/App" /> };
+  })
+);
+
+const PersonalDataApp = React.lazy(() =>
+  import("personalData/App").catch(() => {
+    return { default: () => <FallbackRemote name="personalData/App" /> };
+  })
+);
+
 const App: React.FC = () => {
-  return (
-    <Provider store={store}>
-      <LoggedInProvider>
-        <LoginApp />
-      </LoggedInProvider>
-    </Provider>
+  const username = useAuthStore(
+    (state: { username: string }) => state.username
   );
-};
 
-const LoginApp: React.FC = () => {
-  const { loggedInUser } = useLoggedIn();
+  const [showPersonalData, setShowPersonalData] = useState(false);
+
+  function toggleSetShowPersonalData() {
+    setShowPersonalData(!showPersonalData);
+  }
 
   return (
-    <>
-      {!loggedInUser && <LoginForm />}
-      {loggedInUser && (
-        <Suspense fallback={<div>Loading Banking Record...</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
+      {!username ? (
+        <LoginApp />
+      ) : (
+        <>
           <BankingRecordApp />
-        </Suspense>
+          <button
+            onClick={toggleSetShowPersonalData}
+            title="setShowPersonalData"
+          >
+            {showPersonalData ? "Hide" : "Show"} Personal Data
+          </button>
+          {showPersonalData && <PersonalDataApp />}
+        </>
       )}
-    </>
+    </Suspense>
   );
 };
 

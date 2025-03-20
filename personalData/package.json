@@ -1,13 +1,14 @@
 {
   "name": "personal-data",
   "version": "1.0.0",
-  "description": "personal data app running inside the banking record app",
+  "description": "personal data app running inside the container app",
   "main": "index.ts",
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "make-types": "make-federated-types"
   },
   "author": "crestianiam",
   "license": "MIT",
@@ -20,6 +21,7 @@
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
+    "@cloudbeds/webpack-module-federation-types-plugin": "^2.1.1",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@types/webpack": "^5.28.5",
@@ -31,9 +33,11 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.6.0",
     "style-loader": "^4.0.0",
-    "typescript": "^5.5.4",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4"

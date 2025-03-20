@@ -1,7 +1,7 @@
 {
-  "name": "banking-record",
+  "name": "login",
   "version": "1.0.0",
-  "description": "banking record app running inside the container app",
+  "description": "login app running inside the container app",
   "main": "index.ts",
   "scripts": {
     "start": "webpack serve --mode development",
@@ -14,7 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

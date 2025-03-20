@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "../styles/login.css";
-import { loginUser } from "../services/usersLoginInfoService";
-import { addUser } from "../store/usersLoginInfoSlice";
-import { useDispatch } from "react-redux";
-import { useLoggedIn } from "../context/LoggedInContext";
+import {
+  addUserLoginInfo,
+  emailOrUsernameAndPasswordMatch,
+} from "../services/usersLoginInfoService";
+import { useAuthStore } from "../stores/useAuthStore";
 
 export const LoginForm: React.FC = () => {
-  const dispatch = useDispatch();
-
   const [username, setUsername] = useState("");
   const [emailOrUsername, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [error, setError] = useState("");
-
   const [isSignUp, setIsSignUp] = useState(false);
 
-  const { setLoggedInUser } = useLoggedIn();
+  const login = useAuthStore((s) => s.login);
 
   useEffect(() => {
     setError("");
@@ -37,15 +35,35 @@ export const LoginForm: React.FC = () => {
         return;
       }
 
-      dispatch(addUser({ username, email: emailOrUsername, password }));
+      const userExists = emailOrUsernameAndPasswordMatch(
+        emailOrUsername,
+        password
+      );
+
+      if (userExists) {
+        setError("User with email " + emailOrUsername + " already exists.");
+        return;
+      }
+
+      addUserLoginInfo({
+        username,
+        email: emailOrUsername,
+        password,
+      });
 
       setError("");
       alert("Account created successfully!");
+      setIsSignUp(false);
       return;
     }
 
-    if (loginUser(emailOrUsername, password)) {
-      setLoggedInUser(emailOrUsername);
+    const userLoggedIn = emailOrUsernameAndPasswordMatch(
+      emailOrUsername,
+      password
+    );
+
+    if (userLoggedIn) {
+      login(userLoggedIn.username);
     } else {
       setError("Invalid Username/Email or Password.");
     }
@@ -67,7 +85,7 @@ export const LoginForm: React.FC = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1> Welcome to Tiaguinian National Bank</h1>
+        <h1>Welcome to Tiaguinian National Bank</h1>
         <form onSubmit={handleLogin}>
           {isSignUp && (
             <div className="input-group">

@@ -1,21 +1,16 @@
 import React from "react";
-import { LoggedInProvider, useLoggedIn } from "container/LoggedInContext";
+import { useAuthStore } from "login/useAuthStore";
 
 const App: React.FC = () => {
-  return (
-    <LoggedInProvider>
-      <PersonalDataApp />
-    </LoggedInProvider>
+  const username = useAuthStore(
+    (state: { username: string }) => state.username
   );
-};
-
-const PersonalDataApp: React.FC = () => {
-  const { loggedInUser } = useLoggedIn();
-
   return (
     <>
-      Hello, I am the personal data app and I see the parent context logged in
-      username which is {loggedInUser ? loggedInUser : "No email found."}
+      <h1>
+        Hello, i am the personal data app and i see the logged in username which
+        is {username}
+      </h1>
     </>
   );
 };
