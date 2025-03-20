@@ -1,2 +1,8 @@
 node_modules
-coverage
+dist
+todo.txt
+firstChild/node_modules
+firstChild/dist
+
+secondChild/node_modules
+secondChild/dist
