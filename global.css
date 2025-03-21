@@ -6,61 +6,41 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: "Segoe UI", sans-serif;
   background-color: #f4f7fc;
   color: #1a1a1a;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
 }
 
 header {
   width: 100%;
   background-color: #003366;
   color: #fff;
-  padding: 20px 0;
+  padding: 5px 0;
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.container {
-  width: 100%;
-  max-width: 1200px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-shrink: 0;
 }
 
 main {
-  width: 100%;
-  max-width: 600px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 100%;
+  box-sizing: border-box;
   padding: 20px;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-p {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  text-align: center;
 }
 
 input,
@@ -74,6 +54,10 @@ textarea {
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
@@ -82,6 +66,13 @@ button {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 button:hover {
@@ -89,6 +80,8 @@ button:hover {
 }
 
 footer {
+  align-items: center;
+  justify-content: center;
   width: 100%;
   text-align: center;
   padding: 15px 0;
@@ -96,6 +89,33 @@ footer {
   font-size: 0.9rem;
   color: #777;
   margin-top: auto;
+  position: absolute;
+  bottom: 0;
+}
+
+.logout-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 150px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  position: absolute;
+  top: 8px;
+  right: 20px;
+}
+
+.logout-button:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.05);
+}
+
+.logout-button:active {
+  background-color: #e60000;
+  transform: scale(1);
 }
 
 @media (max-width: 768px) {

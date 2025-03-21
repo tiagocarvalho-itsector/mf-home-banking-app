@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuthStore } from "login/useAuthStore";
+import "../../global.css";
 
 const App: React.FC = () => {
   const username = useAuthStore(

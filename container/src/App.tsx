@@ -1,5 +1,5 @@
 import React, { Suspense, useState } from "react";
-import "./global.css";
+import "../../global.css";
 import FallbackRemote from "./components/FallbackRemote";
 import { useAuthStore } from "login/useAuthStore";
 
@@ -25,6 +25,7 @@ const App: React.FC = () => {
   const username = useAuthStore(
     (state: { username: string }) => state.username
   );
+  const { logout } = useAuthStore();
 
   const [showPersonalData, setShowPersonalData] = useState(false);
 
@@ -34,6 +35,17 @@ const App: React.FC = () => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
+      <header className="header-bar">
+        <div className="header-content">
+          <span className="bank-name">Tiaguinian National Bank</span>
+          {username && (
+            <button onClick={logout} className="logout-button">
+              Logout
+            </button>
+          )}
+        </div>
+      </header>
+
       {!username ? (
         <LoginApp />
       ) : (
@@ -48,6 +60,10 @@ const App: React.FC = () => {
           {showPersonalData && <PersonalDataApp />}
         </>
       )}
+
+      <footer className="footer">
+        <span>&#169; 2025 All Rights Reserved</span>
+      </footer>
     </Suspense>
   );
 };

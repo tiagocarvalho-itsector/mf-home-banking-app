@@ -65,6 +65,7 @@ module.exports = {
     static: path.join(__dirname, "dist"),
     port: 3000,
     hot: true,
+    open: true,
     historyApiFallback: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
