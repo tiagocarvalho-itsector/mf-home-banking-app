@@ -22,20 +22,11 @@ Clone the repository and install dependencies for each application:
 
 ```bash
 # Clone the repository
-git clone https://github.com/crestianiam/template-react-webpack-ts-module-federation
-cd template-react-webpack-ts-module-federation
+git clone https://github.com/tiagocarvalho-itsector/mf-home-banking-app
+cd mf-home-banking-app
 
-# Install dependencies for the container app
-cd container
-npm i
-
-# Install dependencies for bankingRecord app
-cd ../bankingRecord
-npm i
-
-# Install dependencies for personalData app
-cd ../personalData
-npm i
+# Install dependencies for all aps
+powershell -ExecutionPolicy Bypass -File .\run.ps1
 ```
 
 ### Running the Applications
@@ -43,17 +34,8 @@ npm i
 You need to run all applications att the same time.
 
 ```bash
-# Run the container app (on port 3000 - open this one in a browser to see the "final result")
-cd container
-npm start
-
-# Run the bankingRecord app (on port 3001)
-cd bankingRecord
-npm start
-
-# Run the personalData app (on port 3002)
-cd personalData
-npm start
+# Run all apps
+powershell -ExecutionPolicy Bypass -File .\run.ps1
 ```
 
-And there you go!
+Open localhost:3000 in your browser and check out the final result for yourself!

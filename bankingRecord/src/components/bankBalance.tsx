@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getCurrentBalance } from "../services/bankBalanceService";
+import { getCurrentBalance } from "../services/bankService";
 
 type BankBalanceProps = {
   username: string;

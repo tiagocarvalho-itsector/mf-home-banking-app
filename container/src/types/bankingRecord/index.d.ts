@@ -1,5 +1,11 @@
-declare module "#not-for-import/bankingRecord/services/bankBalanceService" {
+declare module "#not-for-import/bankingRecord/services/bankService" {
     export function getCurrentBalance(username: string): Promise<number>;
+    export function getBankExtract(username: string): Promise<{
+        id: string;
+        description: string;
+        payee: string;
+        amount: string;
+    }[]>;
 }
 declare module "#not-for-import/bankingRecord/components/bankBalance" {
     import React from "react";
@@ -7,6 +13,13 @@ declare module "#not-for-import/bankingRecord/components/bankBalance" {
         username: string;
     };
     export const BankBalance: React.FC<BankBalanceProps>;
+}
+declare module "#not-for-import/bankingRecord/components/bankExtract" {
+    import React from "react";
+    type BankExtractProps = {
+        username: string;
+    };
+    export const BankExtract: React.FC<BankExtractProps>;
 }
 declare module "bankingRecord/App" {
     import React from "react";
