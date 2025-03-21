@@ -34,7 +34,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <div className="app-wrapper">
       <header className="header-bar">
         <div className="header-content">
           <span className="bank-name">Tiaguinian National Bank</span>
@@ -46,25 +46,33 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      {!username ? (
-        <LoginApp />
-      ) : (
-        <>
-          <BankingRecordApp />
-          <button
-            onClick={toggleSetShowPersonalData}
-            title="setShowPersonalData"
-          >
-            {showPersonalData ? "Hide" : "Show"} Personal Data
-          </button>
-          {showPersonalData && <PersonalDataApp />}
-        </>
-      )}
+      <main className="main-content">
+        {!username ? (
+          <Suspense fallback={<div>Loading...</div>}>
+            <LoginApp />
+          </Suspense>
+        ) : (
+          <Suspense fallback={<div>Loading...</div>}>
+            <BankingRecordApp />
+            <button
+              onClick={toggleSetShowPersonalData}
+              title="setShowPersonalData"
+            >
+              {showPersonalData ? "Hide" : "Show"} Personal Data
+            </button>
+            {showPersonalData && (
+              <Suspense fallback={<div>Loading...</div>}>
+                <PersonalDataApp />
+              </Suspense>
+            )}
+          </Suspense>
+        )}
+      </main>
 
       <footer className="footer">
         <span>&#169; 2025 All Rights Reserved</span>
       </footer>
-    </Suspense>
+    </div>
   );
 };
 
