@@ -2,6 +2,7 @@ declare module "#not-for-import/bankingRecord/services/bankService" {
     export function getCurrentBalance(username: string): Promise<number>;
     export function getBankExtract(username: string): Promise<{
         id: string;
+        date: string;
         description: string;
         payee: string;
         amount: string;
