@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { UserLoginInfo } from "./types";
 
-interface UsersLoginInfoState {
+type UsersLoginInfoState = {
   usersLoginInfo: UserLoginInfo[];
   addUser: (user: UserLoginInfo) => void;
   removeUser: (email: string) => void;
-}
+};
 
 export const useUsersLoginInfoStore = create<UsersLoginInfoState>((set) => ({
   usersLoginInfo: [

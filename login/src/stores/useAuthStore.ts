@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface AuthState {
+type AuthState = {
   username: string | null;
   login: (username: string) => void;
   logout: () => void;
-}
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(

@@ -1,12 +1,10 @@
-import React from 'react'
+import React from "react";
 
-interface ThisProps {
-    name: string;
-}
+type ThisProps = {
+  name: string;
+};
 const FallbackRemote = ({ name }: ThisProps) => {
-    return (
-        <h3>{name} failed import</h3>
-    )
-}
+  return <h3>{name} failed import</h3>;
+};
 
-export default FallbackRemote
+export default FallbackRemote;
