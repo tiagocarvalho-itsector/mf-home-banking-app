@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuthStore } from "login/useAuthStore";
 import "../../global.css";
+import { PersonalData } from "./components/personalData";
 
 const App: React.FC = () => {
   const username = useAuthStore(
@@ -8,10 +9,7 @@ const App: React.FC = () => {
   );
   return (
     <>
-      <h1>
-        Hello, i am the personal data app and i see the logged in username which
-        is {username}
-      </h1>
+      <PersonalData username={username} />
     </>
   );
 };

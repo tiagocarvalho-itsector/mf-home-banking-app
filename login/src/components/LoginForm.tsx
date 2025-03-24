@@ -86,6 +86,7 @@ export const LoginForm: React.FC = () => {
     <div className="login-container">
       <div className="login-card">
         <h1>Welcome to Tiaguinian National Bank</h1>
+        <br />
         <form onSubmit={handleLogin}>
           {isSignUp && (
             <div className="input-group">

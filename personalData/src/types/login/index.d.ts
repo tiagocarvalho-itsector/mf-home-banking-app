@@ -1,9 +1,9 @@
 declare module "#not-for-import/login/stores/types" {
-    export interface UserLoginInfo {
+    export type UserLoginInfo = {
         email: string;
         username: string;
         password: string;
-    }
+    };
 }
 declare module "#not-for-import/login/stores/useUsersLoginInfoStore" {
     export const useUsersLoginInfoStore: any;

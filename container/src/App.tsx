@@ -1,7 +1,12 @@
 import React, { Suspense, useState } from "react";
 import "../../global.css";
-import FallbackRemote from "./components/FallbackRemote";
 import { useAuthStore } from "login/useAuthStore";
+
+const FallbackRemote = React.lazy(() =>
+  import("utils/FallbackRemote").catch(() => {
+    return { default: () => <FallbackRemote name="utils/FallbackRemote" /> };
+  })
+);
 
 const BankingRecordApp = React.lazy(() =>
   import("bankingRecord/App").catch(() => {
