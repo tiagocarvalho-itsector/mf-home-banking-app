@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import { useUserStore } from "../stores/useUserStore";
 import "../styles/personalData.css";
 
@@ -10,7 +11,10 @@ export const PersonalData: React.FC<PersonalDataProps> = ({ username }) => {
   const [showPersonalData, setShowPersonalData] = useState(false);
   const { findUser } = useUserStore();
 
+  // const navigate = useNavigate();
+
   function toggleShowPersonalData() {
+    // navigate("/profile");
     setShowPersonalData(!showPersonalData);
   }
 

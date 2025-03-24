@@ -1,5 +1,12 @@
 import React, { Suspense } from "react";
 import "../../global.css";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { useAuthStore } from "login/useAuthStore";
 
 const FallbackRemote = React.lazy(() =>
@@ -26,7 +33,20 @@ const PersonalDataApp = React.lazy(() =>
   })
 );
 
-const App: React.FC = () => {
+const PrivateRoute = ({ children }: { children: JSX.Element }) => {
+  const username = useAuthStore(
+    (state: { username: string }) => state.username
+  );
+  const location = useLocation();
+
+  return username ? (
+    children
+  ) : (
+    <Navigate to="/login" state={{ from: location }} replace />
+  );
+};
+
+const AppContent = () => {
   const username = useAuthStore(
     (state: { username: string }) => state.username
   );
@@ -46,18 +66,38 @@ const App: React.FC = () => {
       </header>
 
       <main className="main-content">
-        {!username ? (
-          <Suspense fallback={<></>}>
-            <LoginApp />
-          </Suspense>
-        ) : (
-          <Suspense fallback={<></>}>
-            <BankingRecordApp />
-            <Suspense fallback={<></>}>
-              <PersonalDataApp />
-            </Suspense>
-          </Suspense>
-        )}
+        <Suspense fallback={<></>}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                username ? (
+                  <Navigate to="/dashboard" />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route
+              path="/login"
+              element={!username ? <LoginApp /> : <Navigate to="/dashboard" />}
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Suspense fallback={<></>}>
+                    <BankingRecordApp />
+                    <Suspense fallback={<></>}>
+                      <PersonalDataApp />
+                    </Suspense>
+                  </Suspense>
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <footer className="footer">
@@ -66,5 +106,11 @@ const App: React.FC = () => {
     </div>
   );
 };
+
+const App = () => (
+  <Router>
+    <AppContent />
+  </Router>
+);
 
 export default App;
