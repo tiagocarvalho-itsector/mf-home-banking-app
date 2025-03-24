@@ -10,8 +10,6 @@ declare module "#not-for-import/login/stores/useUsersLoginInfoStore" {
 }
 declare module "#not-for-import/login/services/usersLoginInfoService" {
     import { UserLoginInfo } from "#not-for-import/login/stores/types";
-    export function addUserLoginInfo(user: UserLoginInfo): void;
-    export function removeUserLoginInfo(email: string): void;
     export function emailOrUsernameAndPasswordMatch(emailOrUsername: string, password: string): UserLoginInfo | undefined;
 }
 declare module "login/useAuthStore" {

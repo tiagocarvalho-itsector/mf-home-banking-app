@@ -3,11 +3,9 @@ import { UserLoginInfo } from "./types";
 
 type UsersLoginInfoState = {
   usersLoginInfo: UserLoginInfo[];
-  addUser: (user: UserLoginInfo) => void;
-  removeUser: (email: string) => void;
 };
 
-export const useUsersLoginInfoStore = create<UsersLoginInfoState>((set) => ({
+export const useUsersLoginInfoStore = create<UsersLoginInfoState>(() => ({
   usersLoginInfo: [
     {
       username: "tiagocarvalho",
@@ -20,14 +18,4 @@ export const useUsersLoginInfoStore = create<UsersLoginInfoState>((set) => ({
       password: "password",
     },
   ],
-
-  addUser: (user) =>
-    set((state) => ({
-      usersLoginInfo: [...state.usersLoginInfo, user],
-    })),
-
-  removeUser: (email) =>
-    set((state) => ({
-      usersLoginInfo: state.usersLoginInfo.filter((u) => u.email !== email),
-    })),
 }));

@@ -1,16 +1,6 @@
 import { UserLoginInfo } from "../stores/types";
 import { useUsersLoginInfoStore } from "../stores/useUsersLoginInfoStore";
 
-export function addUserLoginInfo(user: UserLoginInfo): void {
-  const addUser = useUsersLoginInfoStore.getState().addUser;
-  addUser(user);
-}
-
-export function removeUserLoginInfo(email: string): void {
-  const removeUser = useUsersLoginInfoStore.getState().removeUser;
-  removeUser(email);
-}
-
 export function emailOrUsernameAndPasswordMatch(
   emailOrUsername: string,
   password: string
