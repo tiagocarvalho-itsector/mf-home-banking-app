@@ -4,9 +4,9 @@ This project was created using Webpack5, Module Federation, ReactJS and Typescri
 
 ## Features
 
-- **Container**: Home page, which keeps the users login info in a store and (un)authorizes them.
-- **Banking Record**: Calls a mock API to get user's banking extract.
-- **Personal Data**: Calls a mock API to get user's personal data.
+- **Container**: Home page, which keeps the users login info in a zustand store and (un)authorizes them.
+- **Banking Record**: Calls a mock API to get user's bank extract and bank balance.
+- **Personal Data**: Uses a zustand store to get user's personal data.
 
 ## How to Run the App
 

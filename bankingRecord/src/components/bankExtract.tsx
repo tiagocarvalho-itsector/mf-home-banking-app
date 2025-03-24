@@ -9,10 +9,10 @@ export const BankExtract: React.FC<BankExtractProps> = ({ username }) => {
   const [extract, setExtract] = useState<
     {
       id: string;
+      username: string;
       date: string;
       description: string;
       payee: string;
-      amount: string;
     }[]
   >([]);
 
@@ -25,28 +25,29 @@ export const BankExtract: React.FC<BankExtractProps> = ({ username }) => {
     fetchData();
   }, [username]);
 
+  function getDate(dateStr: string) {
+    const dateStrAsDate = new Date(dateStr);
+    return dateStrAsDate.toDateString();
+  }
+
   return (
-    <>
-      <table>
-        <thead>
+    <table>
+      <thead>
+        <tr>
           <th>Date</th>
           <th>Description</th>
           <th>Payee</th>
-          <th>Amount</th>
-        </thead>
-        <tbody>
-          <tbody>
-            {extract.map((transaction) => (
-              <tr key={transaction.id}>
-                <td>{transaction.date}</td>
-                <td>{transaction.description}</td>
-                <td>{transaction.payee}</td>
-                <td>{transaction.amount}</td>
-              </tr>
-            ))}
-          </tbody>
-        </tbody>
-      </table>
-    </>
+        </tr>
+      </thead>
+      <tbody>
+        {extract.map((transaction) => (
+          <tr key={transaction.id}>
+            <td data-label="Date">{getDate(transaction.date)}</td>
+            <td data-label="Description">{transaction.description}</td>
+            <td data-label="Payee">{transaction.payee}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };

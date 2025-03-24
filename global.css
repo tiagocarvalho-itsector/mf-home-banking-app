@@ -106,6 +106,76 @@ button:hover {
   background-color: #0055aa;
 }
 
+table {
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+}
+
+th,
+td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+thead {
+  text-align: center;
+  vertical-align: middle;
+  padding: 8px;
+  border: 1px solid #ddd;
+  background-color: #003366;
+  color: white;
+}
+
+/* thead th {
+  padding: 15px;
+  font-weight: bold;
+  text-align: left;
+  border-right: 1px solid #ffffff55;
+}
+
+thead th:last-child {
+  border-right: none;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #f0f6ff;
+}
+
+tbody td {
+  padding: 15px;
+  border-right: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+
+tbody td:last-child {
+  border-right: none;
+}
+
+tfoot {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+tfoot td {
+  padding: 12px 15px;
+  color: #003366;
+} */
+
 footer {
   align-items: center;
   justify-content: center;
@@ -167,5 +237,39 @@ footer {
 
   h1 {
     font-size: 1.5rem;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #003366;
   }
 }

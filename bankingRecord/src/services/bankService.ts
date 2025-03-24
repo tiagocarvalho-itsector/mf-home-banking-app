@@ -23,22 +23,23 @@ export async function getCurrentBalance(username: string): Promise<number> {
 export async function getBankExtract(username: string): Promise<
   {
     id: string;
+    username: string;
     date: string;
     description: string;
     payee: string;
-    amount: string;
   }[]
 > {
   const extract = (
     await api.get<
       {
         id: string;
+        username: string;
         date: string;
         description: string;
         payee: string;
-        amount: string;
       }[]
-    >(`extract`, {
+      //endpoint should be 'extract' but the mock api website's free plan doesn't allow endpoint name changes
+    >(`users`, {
       params: { username: username },
     })
   ).data;
