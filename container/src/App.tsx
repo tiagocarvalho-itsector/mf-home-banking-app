@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import "../../global.css";
 import { useAuthStore } from "login/useAuthStore";
 
@@ -32,12 +32,6 @@ const App: React.FC = () => {
   );
   const { logout } = useAuthStore();
 
-  const [showPersonalData, setShowPersonalData] = useState(false);
-
-  function toggleSetShowPersonalData() {
-    setShowPersonalData(!showPersonalData);
-  }
-
   return (
     <div className="app-wrapper">
       <header className="header-bar">
@@ -53,23 +47,15 @@ const App: React.FC = () => {
 
       <main className="main-content">
         {!username ? (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<></>}>
             <LoginApp />
           </Suspense>
         ) : (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<></>}>
             <BankingRecordApp />
-            <button
-              onClick={toggleSetShowPersonalData}
-              title="setShowPersonalData"
-            >
-              {showPersonalData ? "Hide" : "Show"} Personal Data
-            </button>
-            {showPersonalData && (
-              <Suspense fallback={<div>Loading...</div>}>
-                <PersonalDataApp />
-              </Suspense>
-            )}
+            <Suspense fallback={<></>}>
+              <PersonalDataApp />
+            </Suspense>
           </Suspense>
         )}
       </main>
