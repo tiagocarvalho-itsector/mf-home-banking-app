@@ -26,7 +26,7 @@ git clone https://github.com/tiagocarvalho-itsector/mf-home-banking-app
 cd mf-home-banking-app
 
 # Install dependencies for all aps
-powershell -ExecutionPolicy Bypass -File .\run.ps1
+powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
 ### Running the Applications
@@ -34,6 +34,9 @@ powershell -ExecutionPolicy Bypass -File .\run.ps1
 You need to run all applications att the same time.
 
 ```bash
+# Create types (webpack module federation plugin)
+powershell -ExecutionPolicy Bypass -File .\make-types.ps1
+
 # Run all apps
 powershell -ExecutionPolicy Bypass -File .\run.ps1
 ```
