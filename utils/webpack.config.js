@@ -41,6 +41,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./FallbackRemote": "./src/components/FallbackRemote",
+        "./Loading": "./src/components/Loading",
       },
       shared: {
         react: {

@@ -43,6 +43,9 @@ module.exports = {
         "./App": "./src/App",
         "./useAuthStore": "./src/stores/useAuthStore",
       },
+      remotes: {
+        utils: "utils@http://localhost:3004/remoteEntry.js",
+      },
       shared: {
         react: {
           singleton: true,

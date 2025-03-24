@@ -1,0 +1,29 @@
+.personal-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 10px;
+  margin-left: 0;
+}
+
+.hello-message {
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  padding: 10px 15px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  align-items: start;
+}
+
+.logo {
+  filter: brightness(0) invert(1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}

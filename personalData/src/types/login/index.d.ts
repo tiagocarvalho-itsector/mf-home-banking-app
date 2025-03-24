@@ -24,6 +24,7 @@ declare module "#not-for-import/login/components/LoginForm" {
 }
 declare module "login/App" {
     import React from "react";
+    import "./styles/login.css";
     const App: React.FC;
     export default App;
 }

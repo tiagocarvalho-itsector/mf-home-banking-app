@@ -44,6 +44,7 @@ module.exports = {
       },
       remotes: {
         login: "login@http://localhost:3002/remoteEntry.js",
+        utils: "utils@http://localhost:3004/remoteEntry.js",
       },
       shared: {
         react: {

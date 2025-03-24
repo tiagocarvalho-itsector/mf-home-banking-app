@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "../styles/login.css";
 import {
   addUserLoginInfo,
   emailOrUsernameAndPasswordMatch,
 } from "../services/usersLoginInfoService";
 import { useAuthStore } from "../stores/useAuthStore";
+import "../styles/login.css";
 
 export const LoginForm: React.FC = () => {
   const [username, setUsername] = useState("");
@@ -146,7 +146,7 @@ export const LoginForm: React.FC = () => {
 
         <div className="toggle-signup">
           <p>
-            {isSignUp ? "Already have" : "Don't have"} an account?
+            {isSignUp ? "Already have" : "Don't have"} an account?{" "}
             <span
               className="toggle-link"
               onClick={() => setIsSignUp(!isSignUp)}
