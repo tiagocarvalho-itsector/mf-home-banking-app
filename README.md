@@ -1,12 +1,14 @@
 # Home Banking App
 
-This project was created using Webpack5, Module Federation, ReactJS and Typescript! It also uses Redux for store management.
+This project was created using Webpack5, Module Federation, ReactJS and Typescript! It also uses Zustand for store management. It's a simple web application that allows authenticated users to see their bank account balance, their account extract and also their personal info. It uses Dynamic Routing so container doesn't need to know their remote apps inner routes.
 
 ## Features
 
-- **Container**: Home page, which keeps the users login info in a zustand store and (un)authorizes them.
-- **Banking Record**: Calls a mock API to get user's bank extract and bank balance.
-- **Personal Data**: Uses a zustand store to get user's personal data.
+- **Container**: Home page, which hosts login and banking record apps (remotes) using Webpack5 Module Federation.
+- **Login**: Login app that keeps the users login info in a zustand store and (un)authorizes them into the other apps.
+- **Banking Record**: Calls a mock API to get user's bank extract and bank balance; hosts Personal Data app.
+- **Personal Data**: Uses a zustand store to show user's personal data (remote of Banking Record app).
+- **Utils**: Remote of all other apps.
 
 ## How to Run the App
 
@@ -31,7 +33,7 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 ### Running the Applications
 
-You need to run all applications att the same time.
+You need to run all applications at the same time.
 
 ```bash
 # Create types (webpack module federation plugin)
