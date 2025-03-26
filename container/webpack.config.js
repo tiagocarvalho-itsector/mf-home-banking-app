@@ -42,7 +42,6 @@ module.exports = {
       remotes: {
         bankingRecord: "bankingRecord@http://localhost:3001/remoteEntry.js",
         login: "login@http://localhost:3002/remoteEntry.js",
-        personalData: "personalData@http://localhost:3003/remoteEntry.js",
         utils: "utils@http://localhost:3004/remoteEntry.js",
       },
       exposes: {},
@@ -54,6 +53,10 @@ module.exports = {
         "react-dom": {
           singleton: true,
           requiredVersion: packageJson.dependencies["react-dom"],
+        },
+        "react-router-dom": {
+          singleton: true,
+          requiredVersion: packageJson.dependencies["react-router-dom"],
         },
       },
     }),

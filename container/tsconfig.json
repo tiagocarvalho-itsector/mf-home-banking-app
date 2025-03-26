@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "paths": { "@types": ["./@types"] }
   },
-  "include": ["src"]
+  "include": ["src", "../bankingRecord/src/contexts"]
 }

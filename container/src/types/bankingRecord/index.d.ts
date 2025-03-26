@@ -22,6 +22,13 @@ declare module "#not-for-import/bankingRecord/components/bankExtract" {
     };
     export const BankExtract: React.FC<BankExtractProps>;
 }
+declare module "#not-for-import/bankingRecord/components/dashboard" {
+    import React from "react";
+    type DashboardProps = {
+        username: string;
+    };
+    export const Dashboard: React.FC<DashboardProps>;
+}
 declare module "bankingRecord/App" {
     import React from "react";
     import "../../global.css";

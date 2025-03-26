@@ -55,6 +55,10 @@ module.exports = {
           singleton: true,
           requiredVersion: packageJson.dependencies["react-dom"],
         },
+        "react-router-dom": {
+          singleton: true,
+          requiredVersion: packageJson.dependencies["react-router-dom"],
+        },
       },
     }),
     new ModulefederationTypesPlugin({

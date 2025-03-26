@@ -1,16 +1,18 @@
 import React from "react";
-import { useAuthStore } from "login/useAuthStore";
 import "../../global.css";
 import { PersonalData } from "./components/personalData";
 
-const App: React.FC = () => {
-  const username = useAuthStore(
-    (state: { username: string }) => state.username
-  );
+type PersonalDataAppProps = {
+  username: string;
+  closePersonalData: () => void;
+};
+
+const App: React.FC<PersonalDataAppProps> = ({
+  username,
+  closePersonalData,
+}) => {
   return (
-    <>
-      <PersonalData username={username} />
-    </>
+    <PersonalData username={username} closePersonalData={closePersonalData} />
   );
 };
 

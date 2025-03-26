@@ -1,21 +1,56 @@
-import React from "react";
-import { useAuthStore } from "login/useAuthStore";
+import React, { lazy, useEffect, useState } from "react";
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import "../../global.css";
-import { BankBalance } from "./components/bankBalance";
-import { BankExtract } from "./components/bankExtract";
+import { Dashboard } from "./components/dashboard";
+import { useAuthStore } from "login/useAuthStore";
+
+const PersonalDataApp = lazy(() => import("personalData/App"));
 
 const App: React.FC = () => {
   const username = useAuthStore(
     (state: { username: string }) => state.username
   );
+  const [isPersonalDataVisible, setIsPersonalDataVisible] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isPersonalDataVisible) {
+      if (!location.pathname.includes("/personal-data")) {
+        navigate("/dashboard/personal-data");
+      }
+    } else {
+      if (location.pathname.includes("/personal-data")) {
+        navigate("/dashboard");
+      }
+    }
+  }, [isPersonalDataVisible, navigate, location.pathname]);
+
+  function handleToggleShowPersonalData() {
+    setIsPersonalDataVisible((prevState) => !prevState);
+  }
 
   return (
     <>
-      <h1>Banking Record</h1>
-      <h3 style={{ fontWeight: "normal" }}>Welcome, {username}!</h3>
-      <hr className="separator" />
-      <BankBalance username={username} />
-      <BankExtract username={username} />
+      <Routes>
+        <Route
+          path="/personal-data"
+          element={
+            isPersonalDataVisible && (
+              <>
+                <PersonalDataApp
+                  username={username}
+                  closePersonalData={handleToggleShowPersonalData}
+                />
+              </>
+            )
+          }
+        />
+      </Routes>
+      <Dashboard username={username} />
+      <button onClick={handleToggleShowPersonalData}>
+        {isPersonalDataVisible ? "Hide Personal Data" : "Show Personal Data"}
+      </button>
     </>
   );
 };

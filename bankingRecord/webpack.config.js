@@ -44,6 +44,7 @@ module.exports = {
       },
       remotes: {
         login: "login@http://localhost:3002/remoteEntry.js",
+        personalData: "personalData@http://localhost:3003/remoteEntry.js",
         utils: "utils@http://localhost:3004/remoteEntry.js",
       },
       shared: {
@@ -54,6 +55,10 @@ module.exports = {
         "react-dom": {
           singleton: true,
           requiredVersion: packageJson.dependencies["react-dom"],
+        },
+        "react-router-dom": {
+          singleton: true,
+          requiredVersion: packageJson.dependencies["react-router-dom"],
         },
       },
     }),

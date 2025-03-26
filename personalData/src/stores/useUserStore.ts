@@ -3,7 +3,7 @@ import { User } from "./types";
 
 type UserState = {
   users: User[];
-  findUser(username: string): User;
+  findUser(username: string): User | null;
 };
 
 export const useUserStore = create<UserState>(() => ({
@@ -23,12 +23,12 @@ export const useUserStore = create<UserState>(() => ({
       image: "https://i.ibb.co/ZRt3D7vJ/Foto-Tiago-Magalh-es-Carvalho-2.jpg",
     },
   ],
-  findUser(username): User {
+  findUser(username): User | null {
     const user = useUserStore
       .getState()
       .users.find((user) => user.username === username);
     if (!user) {
-      throw new Error(`User with username ${username} not found`);
+      return null;
     }
     return user;
   },

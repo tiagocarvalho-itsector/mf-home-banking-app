@@ -1,56 +1,22 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "../../global.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router-dom";
 import { useAuthStore } from "login/useAuthStore";
 
-const FallbackRemote = React.lazy(() =>
-  import("utils/FallbackRemote").catch(() => {
-    return { default: () => <FallbackRemote name="utils/FallbackRemote" /> };
-  })
-);
+const BankingRecordApp = lazy(() => import("bankingRecord/App"));
+const LoginApp = lazy(() => import("login/App"));
 
-const BankingRecordApp = React.lazy(() =>
-  import("bankingRecord/App").catch(() => {
-    return { default: () => <FallbackRemote name="bankingRecord/App" /> };
-  })
-);
+const App: React.FC = () => {
+  const { username, logout } = useAuthStore();
+  const navigate = useNavigate();
 
-const LoginApp = React.lazy(() =>
-  import("login/App").catch(() => {
-    return { default: () => <FallbackRemote name="login/App" /> };
-  })
-);
-
-const PersonalDataApp = React.lazy(() =>
-  import("personalData/App").catch(() => {
-    return { default: () => <FallbackRemote name="personalData/App" /> };
-  })
-);
-
-const PrivateRoute = ({ children }: { children: JSX.Element }) => {
-  const username = useAuthStore(
-    (state: { username: string }) => state.username
-  );
-  const location = useLocation();
-
-  return username ? (
-    children
-  ) : (
-    <Navigate to="/login" state={{ from: location }} replace />
-  );
-};
-
-const AppContent = () => {
-  const username = useAuthStore(
-    (state: { username: string }) => state.username
-  );
-  const { logout } = useAuthStore();
+  useEffect(() => {
+    if (!username) {
+      navigate("/login");
+    } else if (username && window.location.pathname === "/login") {
+      navigate("/dashboard");
+    }
+  }, [username, navigate]);
 
   return (
     <div className="app-wrapper">
@@ -68,34 +34,9 @@ const AppContent = () => {
       <main className="main-content">
         <Suspense fallback={<></>}>
           <Routes>
-            <Route
-              path="/"
-              element={
-                username ? (
-                  <Navigate to="/dashboard" />
-                ) : (
-                  <Navigate to="/login" />
-                )
-              }
-            />
-            <Route
-              path="/login"
-              element={!username ? <LoginApp /> : <Navigate to="/dashboard" />}
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Suspense fallback={<></>}>
-                    <BankingRecordApp />
-                    <Suspense fallback={<></>}>
-                      <PersonalDataApp />
-                    </Suspense>
-                  </Suspense>
-                </PrivateRoute>
-              }
-            />
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route path="/dashboard/*" element={<BankingRecordApp />} />
+            <Route path="/login/*" element={<LoginApp />} />
+            <Route path="*" element={<h1>404 Page Not Found</h1>} />
           </Routes>
         </Suspense>
       </main>
@@ -106,11 +47,5 @@ const AppContent = () => {
     </div>
   );
 };
-
-const App = () => (
-  <Router>
-    <AppContent />
-  </Router>
-);
 
 export default App;
