@@ -47,6 +47,11 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
               <b>Email:</b> {user?.email}
             </p>
           </div>
+          <img
+            src="https://i.ibb.co/rGVhGd1t/image-removebg-preview.png"
+            alt="image-removebg-preview"
+            className="logo"
+          />
         </div>
       </div>
     )
