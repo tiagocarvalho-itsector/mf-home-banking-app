@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@bcp-nextgen-dx-component-factory/design-system": "^5.7.2",
+    "@bcp-nextgen-dx-component-factory/icons-accolade": "^5.7.2",
+    "@bcp-nextgen-dx-component-factory/theme-accolade": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.12"
+  }
+}
